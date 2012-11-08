@@ -1,0 +1,25 @@
+{
+    "name": "expose",
+    "version": "0.0.0",
+    "description": "Consolodate exports from sub modules",
+    "keywords": [
+        "utilities"
+    ],
+    "author": "Boden Russell <bodensemail@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/bodenr/expose.git"
+    },
+    "main": "index",
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "test": "make test"
+    },
+    "directories": {
+        "doc": "./doc" 
+    },
+    "license": "MIT",
+    "private": true
+}
