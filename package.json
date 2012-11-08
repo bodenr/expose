@@ -3,7 +3,10 @@
     "version": "0.0.0",
     "description": "Consolodate exports from sub modules",
     "keywords": [
-        "utilities"
+        "utilities",
+        "utils",
+        "export",
+        "modules"
     ],
     "author": "Boden Russell <bodensemail@gmail.com>",
     "repository": {
@@ -20,6 +23,5 @@
     "directories": {
         "doc": "./doc" 
     },
-    "license": "MIT",
-    "private": true
+    "license": "MIT"
 }
