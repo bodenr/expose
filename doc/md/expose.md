@@ -41,6 +41,23 @@ undefined/null properties.
 
 * **Boolean** *skipEmpty* 
 
+## exists()
+
+Determines if a value is non null
+and defined.
+
+### Params: 
+
+* **o** ** 
+
+## asArray()
+
+Returns its argument as an array.
+
+### Params: 
+
+* **o** ** 
+
 ## toPath(dir, file)
 
 Resolve and return an absolute path.
@@ -100,16 +117,22 @@ as those built with `defaultOpts`.
 Returns the grandparent module directory which
 is assumed to be the requiring module.
 
-## defaultTarget()
+## defaultTarget(parentId)
 
-Build and return the default target directory to expose.
-The default target will be the `lib` or `src`
-directory of the module requiring expose,
-whichever exists in that order. If neither of those exist
-it will be the current working directory as defined by
-`process.cwd()`.
+Build and return the default target directory to expose
+by determining the first directory that exists in the
+following order:
+`dirname(parentId) + /lib`
+`dirname(parentId) + /src`
+`dirname(grandparentDir())/lib`
+`dirname(grandparentDir())/src`
+`process.cwd()`
 
-## defaultOpts(opts)
+### Params: 
+
+* **String** *parentId* The path of the requiring module.
+
+## defaultOpts(opts, parentId)
 
 Returns the default options for this module merged
 with the given options passed to this function.
@@ -125,21 +148,36 @@ with the given options passed to this function.
 
 * **Object** *opts* The options to merge the defaults into.
 
-## expose(options)
+* **String** *parentId* The path of the requiring module.
 
 Expose exports from other modules based on the given `options`.
 
 The `options` object supports the following properties:
-- targets: The target path(s) to expose. This can be an
-array or a single file/dir.
-- grep: An array of `RegExp` objects which indicate
-path inclusions to expose.
-- ungrep: An array of `RegExp` objects which indicate
-path exclusions for expose.
-- scope: The namespace scope to expose the exports on.
-- recurse: A `boolean` indicating if expose should recurse
-any sub-directories. See the `defaultOpts` function for the
-defaults used.
+
+`targets` The target path(s) to expose. This can be an
+array or a single file/dir. If not specified will
+use the precedence as noted in the jsdocs for `defaultTarget()`.
+
+`grep` An array of `RegExp` objects which indicate
+path inclusions to expose. The regex will be `test`ed
+against each absolute file path in the `targets`. An
+absolute path is considered a match if any of the `grep`
+expressions match and none of the `ungrep` expressions
+match.
+
+`ungrep` An array of `RegExp` objects which indicate
+path exclusions for expose. The regex will be `test`ed
+against each absolute file path in the `targets`. An
+absolute path is considered a match if any of the `grep`
+expressions match and none of the `ungrep` expressions
+match.
+
+`scope` The namespace scope to expose the exports on. For
+example this can be the callers `exports` object. If not
+specified an empty plain object is used and returned.
+
+`recurse` A `boolean` indicating if expose should recurse
+any sub-directories. By default this is set to `true`.
 
 ### Params: 
 
