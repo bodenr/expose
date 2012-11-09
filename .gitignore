@@ -1,3 +1,4 @@
-node_modules
+node_modules/
 .settings
 .project
+!test/defaults/lib/node_modules
