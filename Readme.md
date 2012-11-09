@@ -1,4 +1,3 @@
-
 # expose
 
 A [node.js](http://nodejs.org) module allowing you to search and
