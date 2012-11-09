@@ -23,6 +23,9 @@
     "directories": {
         "doc": "./doc" 
     },
+    "engines" : {
+        "node": ">=0.8"
+    },
     "license": "MIT",
     "devDependencies": {
         "mocha": "*",
