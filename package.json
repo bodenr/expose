@@ -1,6 +1,6 @@
 {
     "name": "expose",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Search modules and expose exports onto a given namespace.",
     "keywords": [
         "utilities",
