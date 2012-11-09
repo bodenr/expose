@@ -1,7 +1,7 @@
 {
     "name": "expose",
     "version": "0.0.0",
-    "description": "Consolodate exports from sub modules",
+    "description": "Search modules and expose exports onto a given namespace.",
     "keywords": [
         "utilities",
         "utils",
