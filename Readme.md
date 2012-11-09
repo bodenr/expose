@@ -1,3 +1,4 @@
+[![Build Status](https://secure.travis-ci.org/bodenr/expose.png)](http://travis-ci.org/bodenr/expose)
 # expose
 
 A [node.js](http://nodejs.org) module allowing you to search and
