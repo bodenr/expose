@@ -1,6 +1,6 @@
 {
     "name": "expose",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Search modules and expose exports onto a given namespace.",
     "keywords": [
         "utilities",
@@ -24,7 +24,7 @@
         "doc": "./doc" 
     },
     "engines" : {
-        "node": ">=0.8"
+        "node": ">=0.6"
     },
     "license": "MIT",
     "devDependencies": {
