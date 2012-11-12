@@ -59,7 +59,7 @@
 <p><code>scope</code> The namespace scope to expose the exports on. For<br />example this can be the callers <code>exports</code> object. If not<br />specified an empty plain object is used and returned.</p>
 
 <p><code>recurse</code> A <code>boolean</code> indicating if expose should recurse<br />any sub-directories. By default this is set to <code>true</code>.</p></div><div class="tags"><ul class="no-bullet"><li><strong>@param: </strong><span class="types"> {Object} </span><span class="name">options </span><span class="description">The options object to use for expose.</span></li><li><strong>@returns: </strong></li></ul></div><pre><code class="language-javascript">return function(options) {
-        var opts = defaultOpts(options, parentId),
+        var opts = defaultOpts(options || {}, parentId),
             targets = asArray(opts.targets);
 
         opts.grep = asArray(opts.grep);

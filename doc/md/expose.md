@@ -150,6 +150,23 @@ with the given options passed to this function.
 
 * **String** *parentId* The path of the requiring module.
 
+## escape(str)
+
+Escape the given string for windows style paths
+by replacing `\` with `\\`.
+
+### Params: 
+
+* **String** *str* 
+
+## defaultUngrep(targets)
+
+Build default ungrep pattern based on targets.
+
+### Params: 
+
+* **Array** *targets* 
+
 Expose exports from other modules based on the given `options`.
 
 The `options` object supports the following properties:
