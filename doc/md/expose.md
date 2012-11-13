@@ -85,7 +85,7 @@ and when none of the exlude patterns test.
 
 * **Array** *ungrep* An array of RegExp objects indicating exclusion.
 
-## importModule(module, scope)
+## importModule(module, scope, fn)
 
 Import a module into the given scope there by
 `require`ing the module and copying its exports
@@ -96,6 +96,8 @@ into the given scope object.
 * **String** *module* The path to the module to require.
 
 * **Object** *scope* The namespace to import the modules exports into.
+
+* **Function** *fn* The optional callback function to invoke for each imported property.
 
 ## load(target, opts)
 
@@ -175,19 +177,21 @@ The `options` object supports the following properties:
 array or a single file/dir. If not specified will
 use the precedence as noted in the jsdocs for `defaultTarget()`.
 
-`grep` An array of `RegExp` objects which indicate
+`grep` A single or array of `RegExp` objects which indicate
 path inclusions to expose. The regex will be `test`ed
 against each absolute file path in the `targets`. An
 absolute path is considered a match if any of the `grep`
 expressions match and none of the `ungrep` expressions
 match.
 
-`ungrep` An array of `RegExp` objects which indicate
+`ungrep` A single or array of `RegExp` objects which indicate
 path exclusions for expose. The regex will be `test`ed
 against each absolute file path in the `targets`. An
 absolute path is considered a match if any of the `grep`
 expressions match and none of the `ungrep` expressions
-match.
+match. By default any sub-directory named `node_modules`
+under the callers module path will be ignored. If you specify
+any `ungrep`, your value(s) are used instead.
 
 `scope` The namespace scope to expose the exports on. For
 example this can be the callers `exports` object. If not
@@ -195,6 +199,13 @@ specified an empty plain object is used and returned.
 
 `recurse` A `boolean` indicating if expose should recurse
 any sub-directories. By default this is set to `true`.
+
+`fn` A callback `Function` to invoke for each property imported
+during the expose process. The callback is invoked with 3 arguments
+as follows `fn(module, propName, propVal)` where `module` is the
+stripped (no path or extension) name of the module being imported,
+`propName` is the name of the property being imported and `propVal`
+is the actual value being imported.
 
 ### Params: 
 

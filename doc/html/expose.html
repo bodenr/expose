@@ -52,13 +52,15 @@
 
 <p><code>targets</code> The target path(s) to expose. This can be an<br />array or a single file/dir. If not specified will<br />use the precedence as noted in the jsdocs for <code>defaultTarget()</code>.</p>
 
-<p><code>grep</code> An array of <code>RegExp</code> objects which indicate<br />path inclusions to expose. The regex will be <code>test</code>ed<br />against each absolute file path in the <code>targets</code>. An<br />absolute path is considered a match if any of the <code>grep</code><br />expressions match and none of the <code>ungrep</code> expressions<br />match.</p>
+<p><code>grep</code> A single or array of <code>RegExp</code> objects which indicate<br />path inclusions to expose. The regex will be <code>test</code>ed<br />against each absolute file path in the <code>targets</code>. An<br />absolute path is considered a match if any of the <code>grep</code><br />expressions match and none of the <code>ungrep</code> expressions<br />match.</p>
 
-<p><code>ungrep</code> An array of <code>RegExp</code> objects which indicate<br />path exclusions for expose. The regex will be <code>test</code>ed<br />against each absolute file path in the <code>targets</code>. An<br />absolute path is considered a match if any of the <code>grep</code><br />expressions match and none of the <code>ungrep</code> expressions<br />match.</p>
+<p><code>ungrep</code> A single or array of <code>RegExp</code> objects which indicate<br />path exclusions for expose. The regex will be <code>test</code>ed<br />against each absolute file path in the <code>targets</code>. An<br />absolute path is considered a match if any of the <code>grep</code><br />expressions match and none of the <code>ungrep</code> expressions<br />match. By default any sub-directory named <code>node_modules</code><br />under the callers module path will be ignored. If you specify<br />any <code>ungrep</code>, your value(s) are used instead.</p>
 
 <p><code>scope</code> The namespace scope to expose the exports on. For<br />example this can be the callers <code>exports</code> object. If not<br />specified an empty plain object is used and returned.</p>
 
-<p><code>recurse</code> A <code>boolean</code> indicating if expose should recurse<br />any sub-directories. By default this is set to <code>true</code>.</p></div><div class="tags"><ul class="no-bullet"><li><strong>@param: </strong><span class="types"> {Object} </span><span class="name">options </span><span class="description">The options object to use for expose.</span></li><li><strong>@returns: </strong></li></ul></div><pre><code class="language-javascript">return function(options) {
+<p><code>recurse</code> A <code>boolean</code> indicating if expose should recurse<br />any sub-directories. By default this is set to <code>true</code>.</p>
+
+<p><code>fn</code> A callback <code>Function</code> to invoke for each property imported<br />during the expose process. The callback is invoked with 3 arguments<br />as follows <code>fn(module, propName, propVal)</code> where <code>module</code> is the<br />stripped (no path or extension) name of the module being imported,<br /><code>propName</code> is the name of the property being imported and <code>propVal</code><br />is the actual value being imported.</p></div><div class="tags"><ul class="no-bullet"><li><strong>@param: </strong><span class="types"> {Object} </span><span class="name">options </span><span class="description">The options object to use for expose.</span></li><li><strong>@returns: </strong></li></ul></div><pre><code class="language-javascript">return function(options) {
         var opts = defaultOpts(options || {}, parentId),
             targets = asArray(opts.targets);
 

@@ -26,6 +26,21 @@ describe('expose()', function() {
         Object.keys(imports).length.should.equal(3);
     });
 
+    it('should invoke callback for each property exposed', function() {
+        var record = {}, expectedMods = {a: null, b: null, c: null};
+        function cb(mod, name, val) {
+            record[name] = val;
+            delete expectedMods[mod];
+        };
+        var imports = expose({fn: cb});
+        imports.should.eql(record);
+        imports.should.have.property('a');
+        imports.should.have.property('b');
+        imports.should.have.property('c');
+        Object.keys(imports).length.should.equal(3);
+        Object.keys(expectedMods).length.should.equal(0);
+    });
+
     it('should honor no recurse', function() {
         var imports = expose({recurse: false});
         imports.should.have.property('a');

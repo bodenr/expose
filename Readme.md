@@ -57,6 +57,16 @@ Equivalent to the above:
 expose({scope: exports});
 ```
 
+Same as above, but invoke the `echo` function for each property exposed:
+```js
+function echo(mod, name, val) {
+    console.log("Module name: " + mod);
+    console.log("Property name: " + name);
+    console.log("Property value: " + val);
+};
+expose({scope: exports, fn: echo});
+```
+
 Expose all exports in .js files under the current module's `./lib` dir, 
 but don't recurse into sub-dirs:
 ```js
@@ -80,7 +90,6 @@ exports = expose({targets: ['./test/defaults/lib/inc',
                             './test/defaults/lib/node_modules'],
                             ungrep: []});
 ```
-
 
 ## License
 

@@ -1,3 +1,7 @@
+0.1.2 / 2012-11-13
+==================
+* Add support for expose callback
+
 0.1.1 / 2012-11-12
 ==================
 * Windows path support
