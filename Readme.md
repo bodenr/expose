@@ -43,8 +43,46 @@ a `require(expose)` is the expose function itself.
 var expose = require('expose');
 ```
 
-The function uses an options style object to configure its usage and tries
-to take sensible defaults if you don't provide an option.
+The function accepts a single argument - an options style object to 
+configure itself and tries to take sensible defaults when you 
+don't provide an option.
+
+### The following options are supported:
+
+`targets` - The target path(s) to expose. This can be a single path string
+or an `Array` of path strings. If `targets` is not specified, expose will
+look for a `lib` or `src` directory under the module that `require`d it.
+If neither of those are found under the `require`ing module's directory,
+it will look for them under the grandparent directory. Finally, if all
+else fails expose will use `process.cwd()`.
+
+`grep` - The regular expression(s) (`RegExp` object(s)) which define path 
+inclusions to expose. By default all files under the `targets` which 
+end in `.js` will be exposed. A path is considered a match is any of
+the `grep` expressions match the absolute path and none of the `ungrep`
+expressions match.
+
+`ungrep` - The regular expressions(s) (`RegExp` object(s)) which define
+path exlusions for expose. By default any subdirectory under `targets`
+which contains a `node_modules` dir will be excluded. A path is considered 
+a match is any of the `grep` expressions match the absolute path and 
+none of the `ungrep` expressions match.
+
+`scope` - The namespace scope to expose exports on. For example the callers
+`exports` object. If no `scope` is specified a plain JSON object will be
+created and returned.
+
+`recurse` - A `boolean` indicating if expose should recurse into subdirectories
+under the `targets`. By default this is set to `true`.
+
+`fn` - A callback `Function` to invoke for each property imported during the
+expose process. The callback is invoked with 3 arguments
+as follows `fn(module, propName, propVal)` where `module` is the
+stripped (no path or extension) name of the module being imported,
+propName` is the name of the property being imported and `propVal`
+is the actual value being imported.
+
+### Examples
 
 Expose all exports found in .js files under the current module's `./lib` dir
 (except those found under a /node_modules directory):
@@ -67,18 +105,18 @@ function echo(mod, name, val) {
 expose({scope: exports, fn: echo});
 ```
 
-Expose all exports in .js files under the current module's `./lib` dir, 
+Expose all exports in `.js` files under the current module's `lib` dir, 
 but don't recurse into sub-dirs:
 ```js
 exports = expose({recurse: false});
 ```
 
-Expose all exports in files ending in `a.js` under the current module's `./lib` dir:
+Expose all exports in files ending in `a.js` under the current module's `lib` dir:
 ```js
 exports = expose({grep: /a.js$/});
 ```
 
-Expose all exports for `.js` files under the current module's `./lib` dir that don't 
+Expose all exports for `.js` files under the current module's `lib` dir that don't 
 end in `a.js`:
 ```js
 exports = expose({ungrep: /a.js$/});
