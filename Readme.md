@@ -49,7 +49,7 @@ don't provide an option.
 
 ### The following options are supported:
 
-__`targets`__ - The target path(s) to expose. This can be a single path string
+**`targets`** - The target path(s) to expose. This can be a single path string
 or an `Array` of path strings. If `targets` is not specified, expose will
 look for a `lib` or `src` directory under the module that `require`d it.
 If neither of those are found under the `require`ing module's directory,
