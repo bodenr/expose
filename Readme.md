@@ -49,33 +49,33 @@ don't provide an option.
 
 ### The following options are supported:
 
-`targets` - The target path(s) to expose. This can be a single path string
+__`targets`__ - The target path(s) to expose. This can be a single path string
 or an `Array` of path strings. If `targets` is not specified, expose will
 look for a `lib` or `src` directory under the module that `require`d it.
 If neither of those are found under the `require`ing module's directory,
 it will look for them under the grandparent directory. Finally, if all
 else fails expose will use `process.cwd()`.
 
-`grep` - The regular expression(s) (`RegExp` object(s)) which define path 
+__`grep`__ - The regular expression(s) (`RegExp` object(s)) which define path 
 inclusions to expose. By default all files under the `targets` which 
 end in `.js` will be exposed. A path is considered a match is any of
 the `grep` expressions match the absolute path and none of the `ungrep`
 expressions match.
 
-`ungrep` - The regular expressions(s) (`RegExp` object(s)) which define
+__`ungrep`__ - The regular expressions(s) (`RegExp` object(s)) which define
 path exlusions for expose. By default any subdirectory under `targets`
 which contains a `node_modules` dir will be excluded. A path is considered 
 a match is any of the `grep` expressions match the absolute path and 
 none of the `ungrep` expressions match.
 
-`scope` - The namespace scope to expose exports on. For example the callers
+__`scope`__ - The namespace scope to expose exports on. For example the callers
 `exports` object. If no `scope` is specified a plain JSON object will be
 created and returned.
 
-`recurse` - A `boolean` indicating if expose should recurse into subdirectories
+__`recurse`__ - A `boolean` indicating if expose should recurse into subdirectories
 under the `targets`. By default this is set to `true`.
 
-`fn` - A callback `Function` to invoke for each property imported during the
+__`fn`__ - A callback `Function` to invoke for each property imported during the
 expose process. The callback is invoked with 3 arguments
 as follows `fn(module, propName, propVal)` where `module` is the
 stripped (no path or extension) name of the module being imported,
