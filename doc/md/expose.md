@@ -99,6 +99,14 @@ into the given scope object.
 
 * **Function** *fn* The optional callback function to invoke for each imported property.
 
+## isPlainObject({Mixed})
+
+Determine if the given object is a plain object.
+
+### Params: 
+
+* **obj** *{Mixed}* 
+
 ## load(target, opts)
 
 Perform importing on the given target based on the

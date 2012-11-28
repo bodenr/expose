@@ -1,3 +1,8 @@
+0.1.3 / 2012-11-28
+==================
+* Replace forEach() & some() with for() loop
+* Support non-object module.exports
+
 0.1.2 / 2012-11-13
 ==================
 * Add support for expose callback
