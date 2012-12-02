@@ -56,13 +56,13 @@ If neither of those are found under the `require`ing module's directory,
 it will look for them under the grandparent directory. Finally, if all
 else fails expose will use `process.cwd()`.
 
-`grep` - The regular expression(s) (`RegExp` object(s)) which define path 
+`grep` - The patterns which define path 
 inclusions to expose. By default all files under the `targets` which 
 end in `.js` will be exposed. A path is considered a match is any of
 the `grep` expressions match the absolute path and none of the `ungrep`
 expressions match.
 
-`ungrep` - The regular expressions(s) (`RegExp` object(s)) which define
+`ungrep` - The patterns which define
 path exlusions for expose. By default any subdirectory under `targets`
 which contains a `node_modules` dir will be excluded. A path is considered 
 a match is any of the `grep` expressions match the absolute path and 
@@ -114,6 +114,11 @@ exports = expose({recurse: false});
 Expose all exports in files ending in `a.js` under the current module's `lib` dir:
 ```js
 exports = expose({grep: /a.js$/});
+```
+
+Same as above, but let `expose` create the `RegExp`:
+```js
+exports = expose({grep: 'a.js'});
 ```
 
 Expose all exports for `.js` files under the current module's `lib` dir that don't 

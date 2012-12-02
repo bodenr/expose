@@ -54,6 +54,12 @@ describe('expose()', function() {
         Object.keys(imports).length.should.equal(1);
     });
 
+    it('should honor single file grep string', function() {
+        var imports = expose({grep: 'a.js'});
+        imports.should.have.property('a');
+        Object.keys(imports).length.should.equal(1);
+    });
+
     it('should honor directory grep', function() {
         var imports = expose({grep: /\inc/});
         imports.should.have.property('c');
@@ -72,6 +78,12 @@ describe('expose()', function() {
 
     it('should honor single file ungrep', function() {
         var imports = expose({ungrep: [/b.js$/, ungrepMods, ungrepInc]});
+        imports.should.have.property('a');
+        Object.keys(imports).length.should.equal(1);
+    });
+
+    it('should honor single file ungrep string', function() {
+        var imports = expose({ungrep: ['b.js', ungrepMods, ungrepInc]});
         imports.should.have.property('a');
         Object.keys(imports).length.should.equal(1);
     });

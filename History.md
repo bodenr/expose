@@ -1,3 +1,7 @@
+0.1.4 / 2012-11-28
+==================
+* Convert grep and ungrep strings into RegExp objects
+
 0.1.3 / 2012-11-28
 ==================
 * Replace forEach() & some() with for() loop
